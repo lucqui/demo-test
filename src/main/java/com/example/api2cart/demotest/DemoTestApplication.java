@@ -1,9 +1,8 @@
 package com.example.api2cart.demotest;
 
-import com.example.api2cart.demotest.dao.MerchantRepository;
-import com.example.api2cart.demotest.dao.TransactionRepository;
-import com.example.api2cart.demotest.dao.UserRepository;
-import lombok.AllArgsConstructor;
+import com.example.api2cart.demotest.service.MerchantService;
+import com.example.api2cart.demotest.service.TransactionService;
+import com.example.api2cart.demotest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,41 +10,30 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import javax.persistence.Entity;
-import javax.sql.DataSource;
 
 @SpringBootApplication
 @EnableJpaRepositories("com.example.api2cart.demotest.dao")
 @EntityScan("com.example.api2cart.demotest.model")
 public class DemoTestApplication implements CommandLineRunner {
 
-    private DataSource dataSource;
-    private UserRepository userRepository;
-    private MerchantRepository merchantRepository;
-    private TransactionRepository transactionRepository;
+    private UserService userService;
+    private MerchantService merchantService;
+    private TransactionService transactionService;
 
     @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     @Autowired
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public void setMerchantService(MerchantService merchantService) {
+        this.merchantService = merchantService;
     }
 
     @Autowired
-    public void setMerchantRepository(MerchantRepository merchantRepository) {
-        this.merchantRepository = merchantRepository;
+    public void setTransactionService(TransactionService transactionService) {
+        this.transactionService = transactionService;
     }
-
-    @Autowired
-    public void setTransactionRepository(TransactionRepository transactionRepository) {
-        this.transactionRepository = transactionRepository;
-    }
-
-    @Autowired
-
 
     public static void main(String[] args) {
         SpringApplication.run(DemoTestApplication.class, args);
@@ -54,8 +42,8 @@ public class DemoTestApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        System.out.println(merchantRepository.findAll());
-        System.out.println(userRepository.findAll());
-        System.out.println(transactionRepository.findAll());
+        System.out.println(merchantService.getAll());
+        System.out.println(userService.getAll());
+        System.out.println(transactionService.getAll());
     }
 }
