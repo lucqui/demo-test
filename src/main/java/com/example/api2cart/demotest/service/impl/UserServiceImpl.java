@@ -1,6 +1,8 @@
 package com.example.api2cart.demotest.service.impl;
 
 import com.example.api2cart.demotest.dao.UserRepository;
+import com.example.api2cart.demotest.dto.UserDTO;
+import com.example.api2cart.demotest.dto.mapper.UserMapper;
 import com.example.api2cart.demotest.model.User;
 import com.example.api2cart.demotest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +21,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAll() {
-        return (List<User>) userRepository.findAll();
+    public List<UserDTO> getAll() {
+        return UserMapper.mapper.toDto((List<User>) userRepository.findAll());
     }
 
     @Override
-    public User get(Long id) {
-        return userRepository.findById(id).get();
+    public UserDTO get(Long id) {
+        return UserMapper.mapper.toDto(userRepository.findById(id).get());
     }
 
     @Override
-    public void add(User entity) {
-        userRepository.save(entity);
+    public void add(UserDTO entity) {
+        userRepository.save(UserMapper.mapper.toEntity(entity));
     }
 
     @Override
-    public void delete(User entity) {
-        userRepository.delete(entity);
+    public void delete(UserDTO entity) {
+        userRepository.delete(UserMapper.mapper.toEntity(entity));
     }
 
     @Override
@@ -44,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(User entity) {
-        userRepository.save(entity);
+    public void update(UserDTO entity) {
+        userRepository.save(UserMapper.mapper.toEntity(entity));
     }
 }

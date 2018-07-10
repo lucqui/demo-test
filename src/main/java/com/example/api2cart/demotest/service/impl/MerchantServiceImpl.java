@@ -1,6 +1,8 @@
 package com.example.api2cart.demotest.service.impl;
 
 import com.example.api2cart.demotest.dao.MerchantRepository;
+import com.example.api2cart.demotest.dto.MerchantDTO;
+import com.example.api2cart.demotest.dto.mapper.MerchantMapper;
 import com.example.api2cart.demotest.model.Merchant;
 import com.example.api2cart.demotest.service.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +21,23 @@ public class MerchantServiceImpl implements MerchantService {
     }
 
     @Override
-    public List<Merchant> getAll() {
-        return (List<Merchant>) merchantRepository.findAll();
+    public List<MerchantDTO> getAll() {
+        return MerchantMapper.mapper.toDto((List<Merchant>) merchantRepository.findAll());
     }
 
     @Override
-    public Merchant get(Long id) {
-        return merchantRepository.findById(id).get();
+    public MerchantDTO get(Long id) {
+        return MerchantMapper.mapper.toDto(merchantRepository.findById(id).get());
     }
 
     @Override
-    public void add(Merchant entity) {
-        merchantRepository.save(entity);
+    public void add(MerchantDTO entity) {
+        merchantRepository.save(MerchantMapper.mapper.toEntity(entity));
     }
 
     @Override
-    public void delete(Merchant entity) {
-        merchantRepository.delete(entity);
+    public void delete(MerchantDTO entity) {
+        merchantRepository.delete(MerchantMapper.mapper.toEntity(entity));
     }
 
     @Override
@@ -44,7 +46,7 @@ public class MerchantServiceImpl implements MerchantService {
     }
 
     @Override
-    public void update(Merchant entity) {
-        merchantRepository.save(entity);
+    public void update(MerchantDTO entity) {
+        merchantRepository.save(MerchantMapper.mapper.toEntity(entity));
     }
 }

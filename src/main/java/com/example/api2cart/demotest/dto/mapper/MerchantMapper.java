@@ -1,9 +1,7 @@
 package com.example.api2cart.demotest.dto.mapper;
 
 import com.example.api2cart.demotest.dto.MerchantDTO;
-import com.example.api2cart.demotest.dto.TransactionDTO;
 import com.example.api2cart.demotest.model.Merchant;
-import com.example.api2cart.demotest.model.Transaction;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

@@ -1,7 +1,7 @@
 package com.example.api2cart.demotest.service;
 
-import com.example.api2cart.demotest.model.User;
+import com.example.api2cart.demotest.dto.UserDTO;
 
-public interface UserService extends AbstractServiceCrud<User> {
+public interface UserService extends AbstractServiceCrud<UserDTO> {
 
 }
