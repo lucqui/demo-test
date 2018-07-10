@@ -5,11 +5,12 @@ import com.example.api2cart.demotest.dto.UserDTO;
 import com.example.api2cart.demotest.model.Transaction;
 import com.example.api2cart.demotest.model.User;
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface TransactionMapper {
 
     TransactionMapper mapper = Mappers.getMapper(TransactionMapper.class);

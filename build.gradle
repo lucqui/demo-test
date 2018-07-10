@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-    id 'net.ltgt.apt' version '0.8'
+    id 'net.ltgt.apt' version '0.10'
 }
 
 apply plugin: 'java'
@@ -32,17 +32,21 @@ configurations {
     providedRuntime
 }
 
-
 dependencies {
 
     compile 'org.mapstruct:mapstruct-jdk8:1.2.0.Final'
-    apt 'org.mapstruct:mapstruct-processor:1.2.0.Final'
+    compile 'org.mapstruct:mapstruct-processor:1.2.0.Final'
 
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     compile('org.springframework.boot:spring-boot-starter-web')
     runtime('mysql:mysql-connector-java')
-    compileOnly('org.projectlombok:lombok')
+
+    compileOnly 'org.projectlombok:lombok:1.18.0'
+    apt "org.projectlombok:lombok:1.18.0"
+
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
+
 }

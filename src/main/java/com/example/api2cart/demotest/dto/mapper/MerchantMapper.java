@@ -3,6 +3,7 @@ package com.example.api2cart.demotest.dto.mapper;
 import com.example.api2cart.demotest.dto.MerchantDTO;
 import com.example.api2cart.demotest.model.Merchant;
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;

@@ -27,7 +27,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionDTO get(Long id) {
-        return TransactionMapper.mapper.toDto( transactionRepository.findById(id).get());
+        return TransactionMapper.mapper.toDto(transactionRepository.findById(id).get());
     }
 
     @Override

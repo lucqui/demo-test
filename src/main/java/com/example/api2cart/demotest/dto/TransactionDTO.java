@@ -1,7 +1,14 @@
 package com.example.api2cart.demotest.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class TransactionDTO {
 
     private Long id;
