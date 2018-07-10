@@ -1,4 +1,4 @@
-package com.example.api2cart.demotest.dto.user;
+package com.example.api2cart.demotest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UserDTO {
 
     private Long id;
     private String email;

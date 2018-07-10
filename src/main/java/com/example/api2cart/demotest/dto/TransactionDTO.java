@@ -1,11 +1,8 @@
-package com.example.api2cart.demotest.dto.transaction;
-
-import com.example.api2cart.demotest.dto.user.User;
-import com.example.api2cart.demotest.dto.merchant.Merchant;
+package com.example.api2cart.demotest.dto;
 
 import java.time.LocalDateTime;
 
-public class Transaction {
+public class TransactionDTO {
 
     private Long id;
     private Byte active;
@@ -17,6 +14,6 @@ public class Transaction {
     private Double subtotal;
     private Double taxes;
     private String transactionNumber = "111";
-    private User user;
-    private Merchant merchant;
+    private UserDTO user;
+    private MerchantDTO merchant;
 }
