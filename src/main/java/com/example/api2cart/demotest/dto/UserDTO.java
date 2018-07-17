@@ -17,4 +17,14 @@ public class UserDTO {
     private String phone;
     private String type;
     private String userName;
+
+    public UserDTO(String email, String firsName, String lastName, String middleName, String phone, String type, String userName) {
+        this.email = email;
+        this.firsName = firsName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.phone = phone;
+        this.type = type;
+        this.userName = userName;
+    }
 }
