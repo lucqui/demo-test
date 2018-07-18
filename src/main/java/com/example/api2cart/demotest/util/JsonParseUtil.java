@@ -11,12 +11,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class JsonParseUtil {
 
-    public List<UserDTO> getUsersFromJson(JsonArray order) {
+    private List<UserDTO> getUsersFromJson(JsonArray order) {
 
         List<UserDTO> userDTOS = new ArrayList<>();
 
@@ -48,13 +47,13 @@ public class JsonParseUtil {
         return userDTOS;
     }
 
-    public List<TransactionDTO> getTransactionFromJson(JsonArray order, Map<String, String> param){
+    public List<TransactionDTO> getTransactionFromJson(JsonArray order){
 
         List<TransactionDTO> transactionDTOS = new ArrayList<>();
 
-        Long orderId = null;
-        String createAt = null;
-        String modifiedAt = null;
+        Long orderId;
+        String createAt;
+        String modifiedAt;
         Double insuredAmount = null;
         Double subtotal = null;
         Double tax = null;
