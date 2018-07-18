@@ -23,18 +23,4 @@ public class TransactionDTO {
     private String transactionNumber = "111";
     private UserDTO user;
     private MerchantDTO merchant;
-
-    public TransactionDTO(Byte active, LocalDateTime createDate, String note, LocalDateTime updateDate, String currency, Double insuredAmount, Double subtotal, Double taxes, String transactionNumber, UserDTO user, MerchantDTO merchant) {
-        this.active = active;
-        this.createDate = createDate;
-        this.note = note;
-        this.updateDate = updateDate;
-        this.currency = currency;
-        this.insuredAmount = insuredAmount;
-        this.subtotal = subtotal;
-        this.taxes = taxes;
-        this.transactionNumber = transactionNumber;
-        this.user = user;
-        this.merchant = merchant;
-    }
 }
