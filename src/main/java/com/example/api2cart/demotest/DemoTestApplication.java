@@ -50,8 +50,28 @@ public class DemoTestApplication implements CommandLineRunner {
                                               "Add Route to your cart at checkout to enable protection. Visit routeapp.io to learn more.");
         paramsSaveProducts.put("price", "0");
 
-        Map<String, String> variants = new HashMap<>();
+        Map<String, String> variants1 = new HashMap<>();
+        variants1.put("model", "route0.98");
+        variants1.put("price", "0.98");
+        variants1.put("name", "$0.98");
+        variants1.put("attributes", "0.98");
 
-        restTemplateController.saveProductToCms(paramsSaveProducts, variants);
+        Map<String, String> variants2 = new HashMap<>();
+        variants2.put("model", "route5.00");
+        variants2.put("price", "5.00");
+        variants2.put("name", "$5.00");
+        variants2.put("attributes", "5.00");
+
+        Map<String, String> variants3 = new HashMap<>();
+        variants3.put("model", "route10.00");
+        variants3.put("price", "10.00");
+        variants3.put("name", "$10.00");
+        variants3.put("attributes", "10.00");
+
+        String productId = restTemplateController.saveProductToCms(paramsSaveProducts);
+
+        restTemplateController.saveProductVariant(productId, variants1);
+        restTemplateController.saveProductVariant(productId, variants2);
+        restTemplateController.saveProductVariant(productId, variants3);
     }
 }

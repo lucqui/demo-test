@@ -58,7 +58,7 @@ public class RestTemplateController {
         System.out.println("finish");
     }
 
-    public void saveProductToCms(Map<String, String> paramsSaveProduct, Map<String, String> variants){
+    public String saveProductToCms(Map<String, String> paramsSaveProduct){
 
         ResponseEntity<String> response = restTemplate.getForEntity(
                 "https://api.api2cart.com/v1.0/product.add.json?api_key=" + apiKey + "&store_key=" + storeKey + "&" +
@@ -75,23 +75,26 @@ public class RestTemplateController {
         JsonParser jsonParser = new JsonParser();
         JsonObject jsonObject = (JsonObject) jsonParser.parse(responseProduct);
         JsonObject result = (JsonObject) jsonObject.get("result");
-        String productId = result.get("product_id").getAsString();
+
+        return result.get("product_id").getAsString();
+    }
+
+    public void saveProductVariant(String productId, Map<String, String> variants){
 
         if (!productId.isEmpty() && !variants.isEmpty()) {
 
             ResponseEntity<String> responseVariants = restTemplate.getForEntity(
                     "https://api.api2cart.com/v1.0/product.variant.add.json?api_key=" + apiKey + "&store_key=" + storeKey + "&" +
-                            "product_id=1320984182851&" +
-                            "model=v_5a4b9b12e9359&" +
-                            "name=test&" +
-                            "weight=12.00&" +
-                            "quantity=9&" +
-                            "attributes[Size][XL]=3\n",
+                            "product_id=" + productId + "&" +
+                            "model={model}&" +
+                            "price={price}&" +
+                            "name={name}&" +
+                            "attributes[Title][${attributes}]={attributes}",
                     String.class,
                     variants
             );
 
+            System.out.println(responseVariants);
         }
-
     }
 }
