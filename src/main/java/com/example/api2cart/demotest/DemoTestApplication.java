@@ -21,6 +21,8 @@ public class DemoTestApplication implements CommandLineRunner {
 
     private RestTemplateController restTemplateController;
 
+
+
     @Autowired
     public void setRestTemplateController(RestTemplateController restTemplateController) {
         this.restTemplateController = restTemplateController;
@@ -33,13 +35,23 @@ public class DemoTestApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Map<String, String> params = new HashMap<>();
-        params.put("api_key", "79b8f23e2f9e13075a4dabb818b52632");
-        params.put("store_key", "2e41a1d35caaab4dc289e96fac57bbe2");
-        params.put("start", "0");
-        params.put("count", "30");
-        params.put("params", "force_all");
+//        Map<String, String> paramsSaveOrdersDB = new HashMap<>();
+//        paramsSaveOrdersDB.put("start", "0");
+//        paramsSaveOrdersDB.put("count", "30");
+//        paramsSaveOrdersDB.put("params", "force_all");
+//
+//        restTemplateController.saveOrdersDB(paramsSaveOrdersDB);
 
-        restTemplateController.saveOrdersDB(params);
+
+        Map<String, String> paramsSaveProducts = new HashMap<>();
+        paramsSaveProducts.put("name", "Route Shipping Insurance");
+        paramsSaveProducts.put("model", "Route Shipping Insurance");
+        paramsSaveProducts.put("description", "Route provides protection for shipments that are lost, broken, or stolen. " +
+                                              "Add Route to your cart at checkout to enable protection. Visit routeapp.io to learn more.");
+        paramsSaveProducts.put("price", "0");
+
+        Map<String, String> variants = new HashMap<>();
+
+        restTemplateController.saveProductToCms(paramsSaveProducts, variants);
     }
 }

@@ -17,6 +17,9 @@ import java.util.Map;
 @Component
 public class RestTemplateController {
 
+    private final static String apiKey = "79b8f23e2f9e13075a4dabb818b52632";
+    private final static String storeKey = "2e41a1d35caaab4dc289e96fac57bbe2";
+
     private RestTemplate restTemplate = new RestTemplate();
     private TransactionService transactionService;
     private JsonParseUtil jsonParseUtil;
@@ -34,7 +37,7 @@ public class RestTemplateController {
     public void saveOrdersDB(Map<String, String> params) {
 
         ResponseEntity<String> response = restTemplate.getForEntity(
-                "https://api.api2cart.com/v1.0/order.list.json?api_key={api_key}&store_key={store_key}&start={start}&count={count}&params={params}",
+                "https://api.api2cart.com/v1.0/order.list.json?api_key=" + apiKey + "&store_key=" + storeKey + "&start={start}&count={count}&params={params}",
                 String.class,
                 params
         );
@@ -55,7 +58,40 @@ public class RestTemplateController {
         System.out.println("finish");
     }
 
-    public void saveOrderToCms(){
+    public void saveProductToCms(Map<String, String> paramsSaveProduct, Map<String, String> variants){
+
+        ResponseEntity<String> response = restTemplate.getForEntity(
+                "https://api.api2cart.com/v1.0/product.add.json?api_key=" + apiKey + "&store_key=" + storeKey + "&" +
+                        "name={name}&" +
+                        "model={model}&" +
+                        "description={description}&" +
+                        "price={price}",
+                String.class,
+                paramsSaveProduct
+        );
+
+        String responseProduct = response.getBody();
+
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) jsonParser.parse(responseProduct);
+        JsonObject result = (JsonObject) jsonObject.get("result");
+        String productId = result.get("product_id").getAsString();
+
+        if (!productId.isEmpty() && !variants.isEmpty()) {
+
+            ResponseEntity<String> responseVariants = restTemplate.getForEntity(
+                    "https://api.api2cart.com/v1.0/product.variant.add.json?api_key=" + apiKey + "&store_key=" + storeKey + "&" +
+                            "product_id=1320984182851&" +
+                            "model=v_5a4b9b12e9359&" +
+                            "name=test&" +
+                            "weight=12.00&" +
+                            "quantity=9&" +
+                            "attributes[Size][XL]=3\n",
+                    String.class,
+                    variants
+            );
+
+        }
 
     }
 }
